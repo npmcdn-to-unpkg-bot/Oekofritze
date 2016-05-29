@@ -47,4 +47,36 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+
+.factory('Data', ['$http','$q', function($http, $q) {
+ // console.log("hello from data service");
+    var relPath = "data/EmissionPerGdp.csv";
+    var p = $http.get(relPath)
+    .then(
+      function (response) {
+        // success callback
+        if (typeof response.data === 'object' || typeof response.data === 'string') {
+          return Papa.parse(response.data, {
+            delimiter: ",",	// auto-detect
+            newline: "\n",	// auto-detect
+            header: true,
+            dynamicTyping: true,
+            complete: function(results) {
+              return results;
+            }
+          });
+        } else {
+          //invalid response
+          alert("ERROR LOADING DATA form CSV");
+          return $q.reject(response.data);
+        }
+      },
+      function (response) {
+        // failure call back
+        alert("ERROR LOADING DATA form CSV");
+        return $q.reject(response.data);
+      }
+    );
+    return p;
+}]);
