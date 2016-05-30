@@ -58,7 +58,14 @@
             What is that? Help!
          </button>
 
-          <canvas id="myChart" width="400" height="400"></canvas>
+          <!--<canvas id="myChart" width="1000" height="400"></canvas>-->
+
+          <div class="chartWrapper">
+            <div class="chartAreaWrapper">
+              <canvas id="myChart" height="200" width="{{width}}"></canvas>
+            </div>
+            <canvas id="myChartAxis" height="200" width="0"></canvas>
+          </div>
 
         </ion-content>
       </ion-side-menu>
