@@ -58,3 +58,11 @@
     width: 600px;
     overflow-x: scroll;
 }
+.scroll-container	{
+    width: 5000px;
+    /*height: 400px;*/
+}
+.wide-as-needed {
+    overflow: scroll;
+    white-space: nowrap;
+}

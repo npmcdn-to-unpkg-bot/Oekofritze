@@ -93,6 +93,10 @@ angular.module('starter.controllers',[])
     return $window.innerWidth;
   };
 
+  $scope.height = function () {
+    return $window.innerHeight;
+  };
+
   $scope.openMenu = function() {
     $ionicSideMenuDelegate.toggleRight(true);
   };
@@ -110,15 +114,17 @@ angular.module('starter.controllers',[])
       var ctx = document.getElementById("myChart").getContext("2d");
       var Items;
 
-
-
-
       Data.get(name).then(function (result) {
         console.log(result.data[0]['BAU']);
         Items = result.data;
 
         var lab = [];
-        for (var i = 0; i < Items.length; i++) { if(!(i%10)) lab[i] = i.toString(); else lab[i]="";}
+        for (var i = 0; i < Items.length; i++) {
+          if(!(i%10))
+            lab[i] = i.toString();
+          else
+            lab[i]="";
+        }
 
 
         // var myscale = {
@@ -127,6 +133,12 @@ angular.module('starter.controllers',[])
         //   angleLines: {},
         // };
         var options = {
+          bezierCurve: false,
+          type: "linear",
+          pointDot: true,
+          pointDotRadius: 5,
+          pointHitDetectionRadius: 20,
+          datasetFill: false,
             // showLines: false,
             // type: "linear",
             // pointLables: {},
@@ -138,41 +150,73 @@ angular.module('starter.controllers',[])
             {
               label: "BAU",
               fill: false,
-              fillColor: "rgba(220,220,220,0)",
-              strokeColor: "rgba(220,180,0,1)",
-              pointColor: "rgba(220,180,0,1)",
-              lineTension: 0.1,
-              pointHitRadius: 10,
-              pointStyle: "circle",
+              // fillColor: "rgba(151,187,205,0.2)",
+              // strokeColor: "rgba(151,187,205,1)",
+              // pointColor: "rgba(151,187,205,1)",
+              pointStrokeColor: "#b42573",
+              pointHighlightFill: "#b42573",
+              // pointHighlightStroke: "rgba(151,187,205,0.2)",
+              // backgroundColor: "rgba(151,187,205,0.2)",
+              borderColor: "rgba( 	180,	37,	115, 0.5)",
+              // borderCapStyle: 'butt',
+              // borderDash: [],
+              // borderDashOffset: 0.0,
+              // borderJoinStyle: 'miter',
+              //pointBorderColor: "rgba(151,187,205,0.2)",
+              pointBackgroundColor: "#b42573",
+              pointBorderWidth: 1,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: "rgba( 	180	,37,	115, 0.2)",
+              // pointHoverBorderColor: "rgba(151,187,205,0.2)",
+              pointHoverBorderWidth: 2,
               data: [],
             },
             {
               label: "CT",
               fill: false,
-              fillColor: "rgba(151,187,205,0)",
-              strokeColor: "rgba(151,187,205,1)",
-              pointColor: "rgba(151,187,205,1)",
+              // fillColor: "rgba(151,187,205,0.2)",
+              // strokeColor: "rgba(151,187,205,1)",
+              // pointColor: "rgba(151,187,205,1)",
+              pointStrokeColor: "#3399ff",
+              pointHighlightFill: "#3399ff",
+              // pointHighlightStroke: "rgba(151,187,205,0.2)",
+              // backgroundColor: "rgba(151,187,205,0.2)",
+               borderColor: "rgba(51,153,255, 0.5)",
+              // borderCapStyle: 'butt',
+              // borderDash: [],
+              // borderDashOffset: 0.0,
+              // borderJoinStyle: 'miter',
+              //pointBorderColor: "rgba(151,187,205,0.2)",
+              pointBackgroundColor: "#3399ff",
+              pointBorderWidth: 1,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: "rgba(51,153,255, 0.2)",
+              // pointHoverBorderColor: "rgba(151,187,205,0.2)",
+              pointHoverBorderWidth: 2,
               data: [],
             },
             {
               label: "R&D",
               fill: false,
-              lineTension: 0.1,
-              backgroundColor: "rgba(0,192,192,0.4)",
-              borderColor: "rgba(0,192,192,1)",
-              borderCapStyle: 'butt',
-              borderDash: [],
-              borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: "rgba(0,192,192,1)",
-              pointBackgroundColor: "#ff0000",
+              // fillColor: "rgba(151,187,205,0.2)",
+              // strokeColor: "rgba(151,187,205,1)",
+              // pointColor: "rgba(151,187,205,1)",
+              pointStrokeColor: "#ffa500",
+              pointHighlightFill: "#ffa500",
+              // pointHighlightStroke: "rgba(151,187,205,0.2)",
+              // backgroundColor: "rgba(151,187,205,0.2)",
+              borderColor: "rgba( 	255,	165,	0, 0.5)",
+              // borderCapStyle: 'butt',
+              // borderDash: [],
+              // borderDashOffset: 0.0,
+              // borderJoinStyle: 'miter',
+              //pointBorderColor: "rgba(151,187,205,0.2)",
+              pointBackgroundColor: "#ffa500",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: "rgba(0,192,192,1)",
-              pointHoverBorderColor: "rgba(220,0,220,1)",
+              pointHoverBackgroundColor: "rgba( 	255,	165,	0, 0.2)",
+              // pointHoverBorderColor: "rgba(151,187,205,0.2)",
               pointHoverBorderWidth: 2,
-              pointRadius: 1,
-              pointHitRadius: 10,
               data: [],
             }
           ]
@@ -187,11 +231,6 @@ angular.module('starter.controllers',[])
         }
         console.log(data.datasets[0]);
 
-        var myLineChart = new Chart(ctx, {
-          type: 'line',
-          data: data,
-          options: {}
-        });
 
         Chart.defaults.global.animationSteps = 50;
         Chart.defaults.global.tooltipYPadding = 16;
@@ -202,6 +241,15 @@ angular.module('starter.controllers',[])
         Chart.defaults.global.responsive = true;
         Chart.defaults.global.scaleLineColor = "black";
         Chart.defaults.global.scaleFontSize = 16;
+
+
+      //  draw charts
+        var myLineChart = new Chart(ctx, {
+          type: 'line',
+          data: data,
+          options: {}
+        });
+
 
 
 
