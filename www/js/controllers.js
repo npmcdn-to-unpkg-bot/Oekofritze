@@ -243,6 +243,7 @@ angular.module('starter.controllers',[])
 
     var text="Here comes the information about models and graphs and stuff\n\n";
 
+
     var alertPopup =   $ionicPopup.alert({
       title: 'Help',
       subtitle: 'Models and Graphs',
