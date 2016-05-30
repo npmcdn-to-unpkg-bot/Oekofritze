@@ -1,8 +1,27 @@
 <ion-view view-title="Dashboard">
    <ion-content class="padding">
-      <h2>Welcome to Ionic</h2>
-      <button class="button button-block button-balanced padding-vertical" href="#/tab/model">
-         Auf gehts zum Modell!
-      </button>
-   </ion-content>
-</ion-view>
+      <h2>Oekofritz</h2>
+      <h5><p>CO2 ist eine chemische Verbindung aus Sauerstoff und Kohlenstoff, die in der Sammelformel CO2 genannt wird.
+         Entdeckt wurde es von dem Chemiker Johan Baptita van Helmont im 17. Jahrhundert.
+         Er bemerkte, dass Holzkohle beim Verbrennen an Masse abnahm.
+         Er nannte diesen Vorgang „Spiritus sylvestre“, es bedeutet Wilder Geist.</p> <p>
+            Endgültig studiert wurde Kohlenstoffdioxid von einem Arzt 1754, er konnte feststellen, dass CO2 durch den Atem von Säugetieren ausgestoßen wird.
+            Erstmals konnte man Mitte des 19. Jahrhunderts feststellen, dass der CO2 Ausschuss durch den Menschen um das Doppelte stieg.
+            Ab dieser Zeit wurde CO2 auch für die Globale Erwärmung verantwortlich gemacht.</p>
+            Seither gibt er verschiedene politsche Maßnahmen, um gleichzeitig Ausstoss zu regulieren und Wettbewerbsfähigkeit zu gewähren.
+            Die Auswirkungen verschiedener CO2-Regulierungs-Modelle auf wirtschaftliche Indikatoren sehen hier in unserer App. </h5>
+            <button class="button button-small button-balanced padding-vertical" href="www.wikipedia.at">
+               Weitere Informationen finden Sie hier
+            </button>
+            <button class="button button-block button-balanced padding-vertical" href="#/tab/model">
+               Auf gehts zum Modell!
+            </button>
+            <div style="margin: 0 auto; width:100px">Facts</div>
+            <div class="card" ng-repeat="group in groups">
+               <ion-item class="item-stable" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
+                  <i class="icon" ng-class="isGroupShown(group)"></i>&nbsp;{{group.title}}
+               </ion-item>
+               <ion-item ng-repeat="content in group.contents" class="item-accordion item-text-wrap" ng-show="isGroupShown(group)">{{group.description}}</ion-item>
+            </div>
+         </ion-content>
+      </ion-view>
