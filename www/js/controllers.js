@@ -247,7 +247,7 @@ angular.module('starter.controllers',[])
   $scope.showPopup = function() {
     $scope.data = {};
 
-    var text="Here comes the information about models and graphs and stuff\n\n";
+    var text="Keine Verzweiflung, es geht ganz einfach!\n Swipe einmal nach rechts um die side-bar auszufahren und wähle den gewünschten Parameter aus, den Du betrachten möchtest. Swipe nach links um das Menü wieder zu schließen. Nun sollte Dir die gewünschte Grafik angezeigt werden.\n Nun kannst Du durch klicken auf den Namen eines Szenarios, dieses in der Grafik anzeigen lassen oder ganz einfach ausblenden.\n\n Viel Erfolg!\n\n";
 
 
     var alertPopup =   $ionicPopup.alert({
