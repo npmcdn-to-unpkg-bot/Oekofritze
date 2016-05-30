@@ -1,5 +1,7 @@
 angular.module('starter.controllers',[])
 
+.controller('HelpCtrl', function($scope) {})
+
 .controller('DashCtrl', function($scope) {})
 
 // .controller('FactCtrl', ['Papa', function($scope, Papa) {
