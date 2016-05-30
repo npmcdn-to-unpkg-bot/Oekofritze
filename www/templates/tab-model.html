@@ -10,34 +10,47 @@
          <h1 class="title"><ion-icon class="ion-cloud"></i>&nbsp&nbsp&nbsp&nbsp&nbspDaten</h1>
         </ion-header-bar>
         <ion-content class="has-footer has-wallet">
+
           <ion-list>
-            <ion-checkbox ng-model="isChecked" class="item item-text-wrap"> Production Coefficient</ion-checkbox>
-            <ion-checkbox ng-model="isChecked" class="item item-text-wrap">Emission Coefficient</ion-checkbox>
-            <ion-checkbox ng-model="isChecked" class="item item-text-wrap">Emissions per (nom.) GDP</ion-checkbox>
-            <ion-checkbox ng-model="isChecked" class="item item-text-wrap">Unemployment Rate</ion-checkbox>
-            <ion-checkbox ng-model="isChecked" class="item item-text-wrap">Wealth Capitalists vs. Rest</ion-checkbox>
-            <ion-checkbox ng-model="isChecked" class="item item-text-wrap">CPI</ion-checkbox>
-            <ion-checkbox ng-model="isChecked" class="item item-text-wrap">Want-Need-Ratio</ion-checkbox>
-            <ion-checkbox ng-model="isChecked" class="item item-text-wrap">Profit-Rate</ion-checkbox>
+            <button class="button button-block button-balanced padding-vertical icon-right" ng-click="getChart('EmissionPerGdp')">
+              Emissions Per Gdp
+            </button>
+            <div class="bar bar-header bar-calm">
+              <h1 class="title">bar-calm</h1>
+            </div>
+            <button ng-click="getChart('UnempHouse')">
+              Unemployment households
+            </button>
+            <!--<ion-checkbox ng-model="isChecked" class="item item-text-wrap"> Production Coefficient</ion-checkbox>-->
+            <!--<ion-checkbox ng-model="isChecked" class="item item-text-wrap">Emission Coefficient</ion-checkbox>-->
+            <!--<ion-checkbox ng-model="isChecked" class="item item-text-wrap">Emissions per (nom.) GDP</ion-checkbox>-->
+            <!--<ion-checkbox ng-model="isChecked" class="item item-text-wrap">Unemployment Rate</ion-checkbox>-->
+            <!--<ion-checkbox ng-model="isChecked" class="item item-text-wrap">Wealth Capitalists vs. Rest</ion-checkbox>-->
+            <!--<ion-checkbox ng-model="isChecked" class="item item-text-wrap">CPI</ion-checkbox>-->
+            <!--<ion-checkbox ng-model="isChecked" class="item item-text-wrap">Want-Need-Ratio</ion-checkbox>-->
+            <!--<ion-checkbox ng-model="isChecked" class="item item-text-wrap">Profit-Rate</ion-checkbox>-->
           </ion-list>
         </ion-content>
         <ion-footer-bar class="bar-energized premium-bar">
-          <h1 class="title">Export</h1>
+             <h1 class="title">Export</h1>
         </ion-footer-bar>
       </ion-side-menu-content>
 
       <ion-side-menu side="right" width="{{width()}}" can-drag-menu>
 
         <ion-content class="padding">
-          <div text-align="left: 30px">
-            On a small viewport (less than 768px window width), the left menu will be hidden, but can be shown by swiping left to right, or toggling the button in the top left of the header. On a large viewport (greater than or equal to 768px), the left menu will stay open.
-            {{width()}}
-               <ion-toggle toggle-class="toggle-balanced">Carbon Emission Tax</ion-toggle>
-               <ion-toggle toggle-class="toggle-balanced">Research&Development</ion-toggle>
-         </div>
-         <button class="button button-block button-balanced padding-vertical icon-right ion-ios-information-outline" href="#/tab/help">
-            What is wath? Help!
+          <!--<div text-align="left: 30px">-->
+            <!--&lt;!&ndash;On a small viewport (less than 768px window width), the left menu will be hidden, but can be shown by swiping left to right, or toggling the button in the top left of the header. On a large viewport (greater than or equal to 768px), the left menu will stay open.&ndash;&gt;-->
+            <!--&lt;!&ndash;{{width()}}&ndash;&gt;-->
+               <!--<ion-toggle id="tax-toggle" toggle-class="toggle-balanced">Carbon Emission Tax</ion-toggle>-->
+               <!--<ion-toggle id="rd-toggle" toggle-class="toggle-balanced">Research&Development</ion-toggle>-->
+         <!--</div>-->
+         <button ng-click="showPopup()" class="button button-block button-balanced padding-vertical icon-right ion-ios-information-outline" href="#/tab/help">
+            What is that? Help!
          </button>
+
+          <canvas id="myChart" width="400" height="400"></canvas>
+
         </ion-content>
       </ion-side-menu>
 

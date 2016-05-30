@@ -54,7 +54,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
       views: {
         'tab-model': {
           templateUrl: 'templates/tab-model.html',
-          controller: 'AccountCtrl'
+          controller: 'ModelCtrl'
         }
       }
     })
