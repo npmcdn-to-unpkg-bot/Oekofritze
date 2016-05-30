@@ -178,7 +178,8 @@ angular.module('starter.controllers',[])
           ]
         };
         console.log(Items.length);
-        var dynAddFromIdx = 10
+
+        var dynAddFromIdx = Items.length;
         for (var i = 0; i < dynAddFromIdx; i++) {
           data.datasets[0].data[i] = Items[i]['BAU'];
           data.datasets[1].data[i] = Items[i]['CT'];
@@ -186,11 +187,11 @@ angular.module('starter.controllers',[])
         }
         console.log(data.datasets[0]);
 
-        // var myLineChart = new Chart(ctx, {
-        //   type: 'line',
-        //   data: data,
-        //   options: {}
-        // });
+        var myLineChart = new Chart(ctx, {
+          type: 'line',
+          data: data,
+          options: {}
+        });
 
         Chart.defaults.global.animationSteps = 50;
         Chart.defaults.global.tooltipYPadding = 16;
@@ -204,30 +205,30 @@ angular.module('starter.controllers',[])
 
 
 
-        var myLineChart = Chart.Line(ctx, {
-          data: data,
-          options: options,
-          onAnimationComplete: function () {
-            var sourceCanvas = this.chart.ctx.canvas;
-            var copyWidth = this.scale.xScalePaddingLeft - 5;
-            // the +5 is so that the bottommost y axis label is not clipped off
-            // we could factor this in using measureText if we wanted to be generic
-            var copyHeight = this.scale.endPoint + 5;
-            var targetCtx = document.getElementById("myChartAxis").getContext("2d");
-            targetCtx.canvas.width = copyWidth;
-            targetCtx.drawImage(sourceCanvas, 0, 0, copyWidth, copyHeight, 0, 0, copyWidth, copyHeight);
-          }
-        });
+        // var myLineChart = Chart.Line(ctx, {
+        //   data: data,
+        //   options: options,
+        //   onAnimationComplete: function () {
+        //     var sourceCanvas = this.chart.ctx.canvas;
+        //     var copyWidth = this.scale.xScalePaddingLeft - 5;
+        //     // the +5 is so that the bottommost y axis label is not clipped off
+        //     // we could factor this in using measureText if we wanted to be generic
+        //     var copyHeight = this.scale.endPoint + 5;
+        //     var targetCtx = document.getElementById("myChartAxis").getContext("2d");
+        //     targetCtx.canvas.width = copyWidth;
+        //     targetCtx.drawImage(sourceCanvas, 0, 0, copyWidth, copyHeight, 0, 0, copyWidth, copyHeight);
+        //   }
+        // });
 
-        var lab = "";
-        var addedData=[];
-        for (var i = dynAddFromIdx; i < Items.length; i++) {
-          if(!(i%10)) lab = i.toString();
-          addedData[0] = Items[i]['BAU'];
-          addedData[1] = Items[i]['CT'];
-          addedData[2] = Items[i]['R&D'];
-          myLineChart.addData(addedData, lab);
-        }
+        // var lab = "";
+        // var addedData=[];
+        // for (var i = dynAddFromIdx; i < Items.length; i++) {
+        //   if(!(i%10)) lab = i.toString();
+        //   addedData[0] = Items[i]['BAU'];
+        //   addedData[1] = Items[i]['CT'];
+        //   addedData[2] = Items[i]['R&D'];
+        //   myLineChart.addData(addedData, lab);
+        // }
 
 
 
