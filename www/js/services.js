@@ -50,6 +50,9 @@ angular.module('starter.services', [])
 })
 
 .factory('Data', ['$http','$q', function($http, $q) {
+
+  var graphs = ["Emissions Per Gdp","Gdp","Gdp growth","Unemployment households","Consumer Price Index","Profit Rate"];
+
   return {
     get: function (name) {
 
@@ -83,6 +86,9 @@ angular.module('starter.services', [])
               }
           );
       return p;
+    },
+    allNames: function(){
+      return graphs;
     }
   }
 }])

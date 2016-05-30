@@ -4,7 +4,6 @@ angular.module('starter.controllers',[])
 
 .controller('DashCtrl', function($scope){})
 
-
 .controller('FactCtrl',function($scope){
    $scope.groups = [{
      title: "BAU",
@@ -114,68 +113,51 @@ angular.module('starter.controllers',[])
   $scope.getChart = function (name) {
     //if(name !== undefined) {
       console.log("hello from ModelCtrl with "+name);
-      var ctx = document.getElementById("myChart");
+      var ctx = document.getElementById("myChart").getContext("2d");
       var Items;
+
+
+
 
       Data.get(name).then(function (result) {
         console.log(result.data[0]['BAU']);
         Items = result.data;
+
+        var lab = [];
+        for (var i = 0; i < Items.length; i++) { if(!(i%10)) lab[i] = i.toString(); else lab[i]="";}
+
 
         // var myscale = {
         //   display: true,
         //   ticks: {min: 10},
         //   angleLines: {},
         // };
-        // var options = {
-        //     showLines: false,
-        //     type: "linear",
-        //     pointLables: {},
-        //     scale: myscale,
-        // };
+        var options = {
+            // showLines: false,
+            // type: "linear",
+            // pointLables: {},
+            // scale: myscale,
+        };
         var data = {
-          labels: [""],
+          labels: lab,
           datasets: [
             {
               label: "BAU",
               fill: false,
+              fillColor: "rgba(220,220,220,0)",
+              strokeColor: "rgba(220,180,0,1)",
+              pointColor: "rgba(220,180,0,1)",
               lineTension: 0.1,
-              backgroundColor: "rgba(75,192,192,0.4)",
-              borderColor: "rgba(75,192,192,1)",
-              borderCapStyle: 'butt',
-              borderDash: [],
-              borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: "rgba(75,192,192,1)",
-              pointBackgroundColor: "#fff",
-              pointBorderWidth: 1,
-              pointHoverRadius: 5,
-              pointHoverBackgroundColor: "rgba(75,192,192,1)",
-              pointHoverBorderColor: "rgba(220,220,220,1)",
-              pointHoverBorderWidth: 2,
-              pointRadius: 3,
               pointHitRadius: 10,
               pointStyle: "circle",
-              data: new Array(Items.length),
+              data: [],
             },
             {
               label: "CT",
               fill: false,
-              lineTension: 0.1,
-              backgroundColor: "rgba(75,192,192,0.4)",
-              borderColor: "rgba(75,192,192,1)",
-              borderCapStyle: 'butt',
-              borderDash: [],
-              borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: "rgba(75,192,192,1)",
-              pointBackgroundColor: "#fff",
-              pointBorderWidth: 1,
-              pointHoverRadius: 5,
-              pointHoverBackgroundColor: "rgba(75,192,192,1)",
-              pointHoverBorderColor: "rgba(220,220,220,1)",
-              pointHoverBorderWidth: 2,
-              pointRadius: 1,
-              pointHitRadius: 10,
+              fillColor: "rgba(151,187,205,0)",
+              strokeColor: "rgba(151,187,205,1)",
+              pointColor: "rgba(151,187,205,1)",
               data: [],
             },
             {
@@ -189,11 +171,11 @@ angular.module('starter.controllers',[])
               borderDashOffset: 0.0,
               borderJoinStyle: 'miter',
               pointBorderColor: "rgba(0,192,192,1)",
-              pointBackgroundColor: "#fff",
+              pointBackgroundColor: "#ff0000",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
               pointHoverBackgroundColor: "rgba(0,192,192,1)",
-              pointHoverBorderColor: "rgba(220,220,220,1)",
+              pointHoverBorderColor: "rgba(220,0,220,1)",
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
@@ -202,7 +184,9 @@ angular.module('starter.controllers',[])
           ]
         };
         console.log(Items.length);
-        for (var i = 0; i < Items.length; i++) {
+
+        var dynAddFromIdx = Items.length;
+        for (var i = 0; i < dynAddFromIdx; i++) {
           data.datasets[0].data[i] = Items[i]['BAU'];
           data.datasets[1].data[i] = Items[i]['CT'];
           data.datasets[2].data[i] = Items[i]['R&D'];
@@ -215,12 +199,44 @@ angular.module('starter.controllers',[])
           options: {}
         });
 
-        // Chart.defaults.global.animationSteps = 50;
-        // Chart.defaults.global.tooltipYPadding = 16;
-        // Chart.defaults.global.tooltipCornerRadius = 0;
-        // Chart.defaults.global.tooltipTitleFontStyle = "normal";
-        // Chart.defaults.global.tooltipFillColor = "rgba(0,160,0,0.8)";
-        // Chart.defaults.global.animationEasing = "easeOutBounce";
+        Chart.defaults.global.animationSteps = 50;
+        Chart.defaults.global.tooltipYPadding = 16;
+        Chart.defaults.global.tooltipCornerRadius = 0;
+        Chart.defaults.global.tooltipTitleFontStyle = "normal";
+        Chart.defaults.global.tooltipFillColor = "rgba(0,160,0,0.8)";
+        Chart.defaults.global.animationEasing = "easeOutBounce";
+        Chart.defaults.global.responsive = true;
+        Chart.defaults.global.scaleLineColor = "black";
+        Chart.defaults.global.scaleFontSize = 16;
+
+
+
+        // var myLineChart = Chart.Line(ctx, {
+        //   data: data,
+        //   options: options,
+        //   onAnimationComplete: function () {
+        //     var sourceCanvas = this.chart.ctx.canvas;
+        //     var copyWidth = this.scale.xScalePaddingLeft - 5;
+        //     // the +5 is so that the bottommost y axis label is not clipped off
+        //     // we could factor this in using measureText if we wanted to be generic
+        //     var copyHeight = this.scale.endPoint + 5;
+        //     var targetCtx = document.getElementById("myChartAxis").getContext("2d");
+        //     targetCtx.canvas.width = copyWidth;
+        //     targetCtx.drawImage(sourceCanvas, 0, 0, copyWidth, copyHeight, 0, 0, copyWidth, copyHeight);
+        //   }
+        // });
+
+        // var lab = "";
+        // var addedData=[];
+        // for (var i = dynAddFromIdx; i < Items.length; i++) {
+        //   if(!(i%10)) lab = i.toString();
+        //   addedData[0] = Items[i]['BAU'];
+        //   addedData[1] = Items[i]['CT'];
+        //   addedData[2] = Items[i]['R&D'];
+        //   myLineChart.addData(addedData, lab);
+        // }
+
+
 
 
       });
