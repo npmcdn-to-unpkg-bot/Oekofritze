@@ -1,0 +1,10 @@
+<ion-view view-title="Fakten">
+  <ion-content>
+     <div class="card" ng-repeat="group in groups">
+        <ion-item class="item-stable" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
+           <i class="icon" ng-class="isGroupShown(group)"></i>&nbsp;{{group.title}}
+        </ion-item>
+        <ion-item ng-repeat="content in group.contents" class="item-accordion item-text-wrap" ng-show="isGroupShown(group)">{{group.description}}</ion-item>
+     </div>
+  </ion-content>
+</ion-view>
