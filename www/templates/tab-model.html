@@ -48,12 +48,12 @@
       <!--<ion-side-menu side="right" width="{{width()}}" can-drag-menu>-->
 
         <!--<ion-content class="padding">-->
-          <!--&lt;!&ndash;<div text-align="left: 30px">&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;On a small viewport (less than 768px window width), the left menu will be hidden, but can be shown by swiping left to right, or toggling the button in the top left of the header. On a large viewport (greater than or equal to 768px), the left menu will stay open.&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;{{width()}}&ndash;&gt;&ndash;&gt;-->
-               <!--&lt;!&ndash;<ion-toggle id="tax-toggle" toggle-class="toggle-balanced">Carbon Emission Tax</ion-toggle>&ndash;&gt;-->
-               <!--&lt;!&ndash;<ion-toggle id="rd-toggle" toggle-class="toggle-balanced">Research&Development</ion-toggle>&ndash;&gt;-->
-         <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--<div text-align="left: 30px">-->
+            <!--&lt;!&ndash;On a small viewport (less than 768px window width), the left menu will be hidden, but can be shown by swiping left to right, or toggling the button in the top left of the header. On a large viewport (greater than or equal to 768px), the left menu will stay open.&ndash;&gt;-->
+            <!--&lt;!&ndash;{{width()}}&ndash;&gt;-->
+               <!--<ion-toggle id="tax-toggle" toggle-class="toggle-balanced">Carbon Emission Tax</ion-toggle>-->
+               <!--<ion-toggle id="rd-toggle" toggle-class="toggle-balanced">Research&Development</ion-toggle>-->
+         <!--</div>-->
          <!--<button ng-click="showPopup()" class="button button-block button-balanced padding-vertical icon-right ion-ios-information-outline" href="#/tab/help">-->
             <!--What is that? Help!-->
          <!--</button>-->
@@ -113,9 +113,14 @@
       </ion-side-menu>
 
       <ion-side-menu-content id="model-side-menu-content">
-        <h4 style="text-align: center">{{getGraphName()}}</h4>
+        <div style="margin-top: 4px; padding: 2%;" >
+        <button ng-click="showPopup()"  class="button button-outline button-block button-balanced padding-vertical ion-ios-pulse icon-right" href="#/tab/help">
+          What is that? Help!
+        </button>
+        </div>
+        <h5 style="text-align: center">{{getGraphName()}}</h5>
         <div id="graph-container">
-        <canvas id="myChart" width="{{width()-130}}" height="{{height()/2}}"></canvas>
+          <canvas id="myChart" width="{{width()-130}}" height="{{height()/2}}"></canvas>
         </div>
         <!--width="{{width()}}" height="{{height()/2}}"-->
 

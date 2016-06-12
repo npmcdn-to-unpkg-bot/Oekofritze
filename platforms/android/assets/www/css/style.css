@@ -43,26 +43,37 @@
     /*background: #ccc !important;*/
     /*bottom: -53px !important;*/
     /*z-index: 1 !important; }*/
-.chartWrapper {
-    position: relative;
+/*.chartWrapper {*/
+    /*position: relative;*/
+/*}*/
+
+.canvas {
+    align-content: center;
 }
 
-.chartWrapper > canvas {
-    position: absolute;
-    left: 0;
-    top: 0;
-    pointer-events:none;
+#graph-container{
+    padding: 5%;
 }
 
-.chartAreaWrapper {
-    width: 600px;
-    overflow-x: scroll;
+#further-reading{
+
 }
-.scroll-container	{
-    width: 5000px;
-    /*height: 400px;*/
-}
-.wide-as-needed {
-    overflow: scroll;
-    white-space: nowrap;
-}
+/*.chartWrapper > canvas {*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*pointer-events:none;*/
+/*}*/
+
+/*.chartAreaWrapper {*/
+    /*width: 600px;*/
+    /*overflow-x: scroll;*/
+/*}*/
+/*.scroll-container	{*/
+    /*width: 5000px;*/
+    /*!*height: 400px;*!*/
+/*}*/
+/*.wide-as-needed {*/
+    /*overflow: scroll;*/
+    /*white-space: nowrap;*/
+/*}*/
